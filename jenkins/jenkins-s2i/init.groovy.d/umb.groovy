@@ -11,7 +11,7 @@ def prodTopicProvider = prodProvider.getTopicProvider()
 def prodAuthenticationMethod = prodProvider.getAuthenticationMethod()
 
 logger.info("Setup UMB Stage Messaging Provider")
-ActiveMqMessagingProvider umbStage = new ActiveMqMessagingProvider("Local UMB", "failover:(ssl://umb-test-123-umb:5673)?startupMaxReconnectAttempts=1&maxReconnectAttempts=1", true, "", prodTopicProvider, prodAuthenticationMethod)
+ActiveMqMessagingProvider umbStage = new ActiveMqMessagingProvider("Local UMB", "failover:(ssl://umb-test-123-umb:61613?socket.enabledProtocols=TLSv1.2)?startupMaxReconnectAttempts=1&maxReconnectAttempts=1", true, "", prodTopicProvider, prodAuthenticationMethod)
 try {
     GlobalCIConfiguration.get().addMessageProvider(umbStage)
 }
