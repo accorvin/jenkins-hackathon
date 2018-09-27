@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# run the default assemble script first
+/usr/libexec/s2i/assemble
+exitCode="$?"
+if [[ "$exitCode" != "0" ]]; then
+    echo "The default '/usr/libexec/s2i/assemble' script failed! Exit code: $exitCode"
+    exit 1
+fi
+
+# remove the "OpenShift Sample" job as we don't need it
+echo "Removing sample job '/opt/openshift/configuration/jobs/OpenShift Sample'"
+rm -rf "/opt/openshift/configuration/jobs/OpenShift Sample"

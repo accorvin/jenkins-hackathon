@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# make sure we always use the latest Jenkins config coming from the image
+echo "Copying Jenkins configuration to ${JENKINS_HOME}..."
+rsync -av --exclude="users" /opt/openshift/configuration/* ${JENKINS_HOME}
+
+# run the default run script as a last step
+/usr/libexec/s2i/run
